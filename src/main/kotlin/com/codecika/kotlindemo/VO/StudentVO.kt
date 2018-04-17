@@ -3,11 +3,11 @@ package com.codecika.kotlindemo.VO
 import lombok.Data
 import javax.validation.constraints.NotBlank
 
-data class StudentVO(
+class StudentVO(
 
-        var name: String,
+        var name: String ="",
 
-        var address: String,
+        var address: String= "",
 
-        var birthday: String
+        val birthday: String= ""
 )

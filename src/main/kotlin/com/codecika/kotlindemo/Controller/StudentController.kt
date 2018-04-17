@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import java.util.*
 import javax.validation.Valid
 
 @RestController
@@ -20,26 +21,25 @@ class StudentController() {
     lateinit var studentService: StudentService
 
     @GetMapping("/get-all")
-    fun getAllStudent(): List<Student> =
-            studentRepository.findAll()
+    fun getAllStudent(): List<Student> {
+     return studentService.getAll()
+    }
 
     @PostMapping("/add")
-    fun addData(@Valid @RequestBody student: Student): Student =
-            studentService.saveData(student)
+    fun addData(@Valid @RequestBody student: Student): Student {
+        return studentService.saveData(student)
+    }
 
     @GetMapping("/student/{id}")
-    fun getStudentById(@PathVariable(value = "id") id: Long): ResponseEntity<Student> {
-        return studentRepository.findById(id).map { student ->
-            ResponseEntity.ok(student)
-        }.orElse(ResponseEntity.notFound().build())
+    fun getStudentById(@PathVariable(value = "id") id: Long): Optional<Student>{
+        return studentService.getDetail(id)
     }
 
 
     @PutMapping("/edit/{id}")
     fun updateArticleById(@PathVariable(value = "id") id: Long,
-                          @RequestBody newStudent: Student) {
-        assert(newStudent.id == id)
-        studentRepository.saveAndFlush(newStudent)
+                          @RequestBody newStudent: Student): Student {
+        return studentService.editData(newStudent,id)
 
     }
 
