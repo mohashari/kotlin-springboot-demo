@@ -1,9 +1,9 @@
-package com.codecika.kotlindemo.Service
+package com.codecika.kotlindemo.service
 
-import com.codecika.kotlindemo.Converter.toVO
-import com.codecika.kotlindemo.Model.Domain.Student
-import com.codecika.kotlindemo.Model.Repository.StudentRepository
-import com.codecika.kotlindemo.VO.StudentVO
+import com.codecika.kotlindemo.converter.toVO
+import com.codecika.kotlindemo.model.domain.Student
+import com.codecika.kotlindemo.model.repository.StudentRepository
+import com.codecika.kotlindemo.vo.StudentVO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
