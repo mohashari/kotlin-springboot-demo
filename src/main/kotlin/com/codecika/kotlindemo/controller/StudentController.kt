@@ -34,7 +34,6 @@ class StudentController() {
     fun updateArticleById(@PathVariable(value = "id") id: Long,
                           @RequestBody newStudent: StudentVO): StudentVO {
         return studentService.editData(newStudent.toModel(), id)
-
     }
 
 }
