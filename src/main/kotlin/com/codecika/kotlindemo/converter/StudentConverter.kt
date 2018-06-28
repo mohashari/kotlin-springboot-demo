@@ -5,6 +5,7 @@ import com.codecika.kotlindemo.vo.StudentVO
 
 fun Student.toVO(): StudentVO {
     return StudentVO(
+            id = id,
             name = name,
             address = address,
             birthday = birthday
@@ -13,6 +14,7 @@ fun Student.toVO(): StudentVO {
 
 fun StudentVO.toModel(): Student {
     return Student().apply {
+        id = this@toModel.id
         name = this@toModel.name
         address = this@toModel.address
         birthday = this@toModel.birthday

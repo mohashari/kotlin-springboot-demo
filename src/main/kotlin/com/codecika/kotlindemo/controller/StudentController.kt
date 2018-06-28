@@ -1,6 +1,7 @@
 package com.codecika.kotlindemo.controller
 
 import com.codecika.kotlindemo.converter.toModel
+import com.codecika.kotlindemo.model.domain.Student
 import com.codecika.kotlindemo.service.StudentService
 import com.codecika.kotlindemo.vo.StudentVO
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,11 +31,14 @@ class StudentController() {
         return studentService.getDetail(id)
     }
 
-    @PutMapping("/edit/{id}")
-    fun updateArticleById(@PathVariable(value = "id") id: Long,
-                          @RequestBody newStudent: StudentVO): StudentVO {
-        return studentService.editData(newStudent.toModel(), id)
+    @PutMapping("/edit")
+    fun updateArticleById(@RequestBody student: Student): StudentVO {
+        return studentService.editData(student)
+    }
 
+    @DeleteMapping("/delete/{id}")
+    fun deleteStudent(@PathVariable(value = "id") id: Long): String {
+        return studentService.deleteStudent(id)
     }
 
 }

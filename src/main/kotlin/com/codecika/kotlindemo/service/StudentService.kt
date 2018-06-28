@@ -26,8 +26,25 @@ class StudentService {
         return studentRepository.findById(id).map { it.toVO() }
     }
 
-    fun editData(student: Student, id: Long): StudentVO {
-        assert(student.id == id)
-        return studentRepository.saveAndFlush(student).toVO()
+
+    fun editData(student: Student): StudentVO {
+        val model = studentRepository.getOne(student.id)
+        model.apply {
+            address = student.address
+            birthday = student.birthday
+            name = student.name
+        }
+        return studentRepository.saveAndFlush(model).toVO()
+    }
+
+    fun deleteStudent(id: Long): String {
+        val model: Student = studentRepository.getOne(id)
+        if (model == null) {
+            return "Data Tidak Ada";
+        } else {
+            studentRepository.delete(model)
+            return "Data Sudah Di hapus"
+        }
+
     }
 }
